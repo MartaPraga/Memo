@@ -1,0 +1,15 @@
+.textWindow__container {
+  width: 20rem;
+  height: 4rem;
+  background-color: darkseagreen;
+
+  & tr {
+    display: flex;
+    align-items: center;
+  }
+
+  & img {
+    width: 50px;
+    background-color: white;
+  }
+}

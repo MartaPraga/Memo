@@ -1,0 +1,27 @@
+.Game {
+  display: flex;
+  flex-direction: row;
+
+
+  &__extensions {
+    display: flex;
+    flex-direction: column;
+
+
+    &__button {
+      width: 7rem;
+      height: 3rem;
+      background-color: deeppink;
+    }
+  }
+
+}
+
+.Game__main__extensions__button {
+  width: 7rem;
+  height: 3rem;
+  background-color: deeppink;
+  border: 2px solid hotpink;
+  color: white;
+  margin: 20px;
+}
