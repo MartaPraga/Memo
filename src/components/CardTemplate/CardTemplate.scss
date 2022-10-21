@@ -26,6 +26,7 @@
 
     &-flipped &-observe {
       transform: rotateY(0deg);
+      transition: ease-out 0.5s;
     }
 
     &-reverse {

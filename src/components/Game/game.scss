@@ -8,11 +8,7 @@
     flex-direction: column;
 
 
-    &__button {
-      width: 7rem;
-      height: 3rem;
-      background-color: deeppink;
-    }
+
   }
 
 }
@@ -20,8 +16,7 @@
 .Game__main__extensions__button {
   width: 7rem;
   height: 3rem;
-  background-color: deeppink;
-  border: 2px solid hotpink;
-  color: white;
+  background-color: gold;
+  border: 2px solid goldenrod;
   margin: 20px;
 }

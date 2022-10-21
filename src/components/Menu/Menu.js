@@ -5,7 +5,7 @@ export function Menu() {
     return(
         <nav className='nav'>
             <ul className='nav__list'>
-                <li className='nav__list-item'>New game</li>
+                <li className='nav__list-item'></li>
             </ul>
         </nav>
     )
