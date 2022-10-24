@@ -1,5 +1,13 @@
-.logo {
+.Logo {
   font-family: 'Give You Glory', cursive;
   font-size: 3rem;
+  background: #DF4C79;
+  background: linear-gradient(to right, #DF4C79 0%, #EC6864 25%, #F2D853 50%, #56B6AD 76%, #60AFDB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
+
+  &__link {
+    text-decoration: none;
+  }
 }

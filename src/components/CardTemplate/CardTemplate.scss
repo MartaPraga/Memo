@@ -1,13 +1,15 @@
 .Game__cardTemplate {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   margin: 25px auto;
-
 
   &-card {
     border-radius: 5px;
     position: relative;
     margin: 10px;
+    cursor: pointer;
+    perspective: 700px;
+
 
     & img {
       max-width: 100%;
@@ -22,15 +24,24 @@
       object-fit: contain;
       position: absolute;
       transform: rotateY(90deg);
+      transition: ease-in-out 0.3s;
+      pointer-events: none;
     }
 
     &-flipped &-observe {
       transform: rotateY(0deg);
-      transition: ease-out 0.5s;
+      transition-delay: 0.3s;
     }
 
     &-reverse {
-      width: 100%;
+      //transform: rotateY(0deg);
+      transition: ease-in-out 0.3s;
+      transition-delay: 0.3s;
+    }
+
+    &-flipped &-reverse {
+      transform: rotateY(90deg);
+      transition-delay: 0s;
     }
   }
 }

@@ -3,7 +3,7 @@ import './MovesCounter.scss'
 
 export function MovesCounter({moves}) {
     return(
-        <div className='box'>
+        <div className='MovesCounter'>
             Moves: {moves}
         </div>
     )

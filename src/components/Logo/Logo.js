@@ -3,6 +3,8 @@ import './Logo.scss'
 
 export function Logo() {
     return (
-        <h1 className='logo'>memory</h1>
+        <h1 className='Logo'>
+            <a className='Logo__link' href="/Game">memory</a>
+        </h1>
     )
 }

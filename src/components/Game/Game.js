@@ -3,8 +3,8 @@ import shuffle from "lodash.shuffle";
 import {CardTemplate} from "../CardTemplate/CardTemplate";
 import {Timer} from "../Timer/Timer";
 import {MovesCounter} from "../MovesCounter/MovesCounter";
-import {TextWindow} from "../TextWindow/TextWindow";
-import './game.scss';
+import {MatchedPairsList} from "../MatchedPairsList/MatchedPairsList";
+import './Game.scss';
 
 const carsLogo = [
     {"src": "/img/CarsLogo/acura-logo.png", text: "acura"},
@@ -37,13 +37,15 @@ const carsLogo = [
     // {"src": "/img/CarsLogo/volvo-logo.png", text: 'volvo'},
 ];
 
-const INITIAL_TIME = 60;
+const INITIAL_TIME = 0;
 
 export function Game() {
     const [cards, setCards] = useState([]);
     const [matchedCards, setMatchedCards] = useState([]);
     const [moves, setMoves] = useState(0);
-    const [time, setTime] = useState(INITIAL_TIME);
+    const [seconds, setSeconds] = useState(0)
+    const [minutes, setMinutes] = useState(0)
+    const [timeRunning, setTimeRunning] = useState(false)
     const [firstCard, setFirstCard] = useState(null);
     const [secondCard, setSecondCard] = useState(null);
 
@@ -52,11 +54,14 @@ export function Game() {
             .slice(0, 8);
         const duplicatedArray = [...shuffledArray, ...shuffledArray]
         const shuffledCards = shuffle(duplicatedArray)
-            .map((card, index) => ({...card, id: index, matched: false}))
+            .map((card, index) => ({...card, id: index + 1, matched: false}))
 
-        setCards(shuffledCards)
-        setMoves(0)
-        setTime(INITIAL_TIME)
+        setCards(shuffledCards);
+        setMoves(0);
+        setSeconds(0);
+        setMinutes(0);
+        setTimeRunning(true);
+        setMatchedCards([]);
     }
 
     const resetMoves = () => {
@@ -83,8 +88,18 @@ export function Game() {
                 setCards(prevState => {
                     return prevState.map(card => {
                         if (firstCard.src === card.src) {
-                            setMatchedCards(card)
-                            console.log('@@@@@@@', matchedCards)
+                            setMatchedCards(prevCard => {
+                                const updatedMatchedCards = [...prevCard, card]
+                                console.log(updatedMatchedCards)
+                                const uniqueCard = updatedMatchedCards
+                                    .filter((a, i) => updatedMatchedCards
+                                        .findIndex((s) => a.text === s.text) === i)
+                                return uniqueCard
+                            })
+                            // setMatchedCards(prevCard => {
+                            //     return [...prevCard, card]
+                            // });
+                            // // setMatchedCards(card)
                             return {...card, matched: true}
                         } else {
                             return card
@@ -92,7 +107,7 @@ export function Game() {
                     })
                 })
                 resetMoves()
-
+                console.log("matched cards", matchedCards)
             } else {
                 setTimeout(() => resetMoves(), 1000)
             }
@@ -101,10 +116,28 @@ export function Game() {
     }, [firstCard, secondCard]);
 
 
+
     return (
         <div className='Game'>
+            <div className='Game__main__extensions'>
+                <button onClick={shuffleCards} className='Game__main__extensions__button'>New Game</button>
+                <Timer
+                    timeRunning={timeRunning}
+                    seconds={seconds}
+                    setSeconds={setSeconds}
+                    minutes={minutes}
+                    setMinutes={setMinutes}
+                    matchedCards={matchedCards}
+                />
+                <MovesCounter
+                    moves={moves}
+                />
+                <MatchedPairsList
+                    matchedCards={matchedCards}
+                />
+            </div>
             <div className='Game__cardTemplate'>
-                {cards.map(card => (
+                {cards.map((card, index) => (
                     <CardTemplate
                         key={card.id}
                         card={card}
@@ -113,19 +146,7 @@ export function Game() {
                     />
                 ))}
             </div>
-            <div className='Game__main__extensions'>
-                <button onClick={shuffleCards} className='Game__main__extensions__button'>New Game</button>
-                <Timer
-                    time={time}
-                    setTime={setTime}
-                />
-                <MovesCounter
-                    moves={moves}
-                />
-                <TextWindow
-                    matchedCards={matchedCards}
-                />
-            </div>
+
         </div>
     )
 }

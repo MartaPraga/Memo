@@ -1,9 +1,12 @@
 import React from "react";
+// import {Switch, Route} from 'react-router-dom';
 import {PageHeader} from "../PageHeader/PageHeader";
+// import {Game} from "../Game/game";
+// import {Scores} from "../Scores/Scores";
 import {PageFooter} from "../PageFooter/PageFooter";
-
-import {Game} from "../Game/game";
 import './Layout.scss'
+import {Outlet} from "react-router-dom";
+// import * as path from "path";
 
 
 export function Layout() {
@@ -11,7 +14,7 @@ export function Layout() {
         <div className='layout'>
             <PageHeader/>
             <main className='layout__main'>
-                <Game/>
+                <Outlet />
             </main>
             <PageFooter/>
         </div>
