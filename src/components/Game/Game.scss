@@ -14,8 +14,19 @@
       font-weight: 700;
       background-color: gold;
       border: 2px solid goldenrod;
-      border-radius: 20px;
+      border-radius: 4em;
       margin: 10px auto;
+
+      &:hover {
+        transition-duration: 0.2s;
+        background-color: #F2D853;
+        border-color: #F2E888;
+      }
+
+      &:active {
+        position: relative;
+        top: 1px
+      }
     }
   }
 

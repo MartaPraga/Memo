@@ -48,6 +48,7 @@ export function Game() {
     const [timeRunning, setTimeRunning] = useState(false)
     const [firstCard, setFirstCard] = useState(null);
     const [secondCard, setSecondCard] = useState(null);
+    const [flippedText, setFlippedText] = useState(null)
 
     const shuffleCards = () => {
         const shuffledArray = shuffle(carsLogo)
@@ -79,7 +80,6 @@ export function Game() {
         } else {
             setFirstCard(card)
         }
-
     }
 
     useEffect(() => {
@@ -96,10 +96,6 @@ export function Game() {
                                         .findIndex((s) => a.text === s.text) === i)
                                 return uniqueCard
                             })
-                            // setMatchedCards(prevCard => {
-                            //     return [...prevCard, card]
-                            // });
-                            // // setMatchedCards(card)
                             return {...card, matched: true}
                         } else {
                             return card
@@ -120,7 +116,12 @@ export function Game() {
     return (
         <div className='Game'>
             <div className='Game__main__extensions'>
-                <button onClick={shuffleCards} className='Game__main__extensions__button'>New Game</button>
+                <button
+                    onClick={shuffleCards}
+                    className='Game__main__extensions__button'
+                >
+                    New Game
+                </button>
                 <Timer
                     timeRunning={timeRunning}
                     seconds={seconds}
