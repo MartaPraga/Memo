@@ -4,6 +4,7 @@ import {CardTemplate} from "../CardTemplate/CardTemplate";
 import {Timer} from "../Timer/Timer";
 import {MovesCounter} from "../MovesCounter/MovesCounter";
 import {MatchedPairsList} from "../MatchedPairsList/MatchedPairsList";
+import {Modal} from "../Modal/Modal";
 import './Game.scss';
 
 const carsLogo = [
@@ -37,7 +38,7 @@ const carsLogo = [
     // {"src": "/img/CarsLogo/volvo-logo.png", text: 'volvo'},
 ];
 
-const INITIAL_TIME = 0;
+const PAIRS_NUMBER = 8;
 
 export function Game() {
     const [cards, setCards] = useState([]);
@@ -48,11 +49,11 @@ export function Game() {
     const [timeRunning, setTimeRunning] = useState(false)
     const [firstCard, setFirstCard] = useState(null);
     const [secondCard, setSecondCard] = useState(null);
-    const [flippedText, setFlippedText] = useState(null)
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const shuffleCards = () => {
         const shuffledArray = shuffle(carsLogo)
-            .slice(0, 8);
+            .slice(0, PAIRS_NUMBER);
         const duplicatedArray = [...shuffledArray, ...shuffledArray]
         const shuffledCards = shuffle(duplicatedArray)
             .map((card, index) => ({...card, id: index + 1, matched: false}))
@@ -90,7 +91,6 @@ export function Game() {
                         if (firstCard.src === card.src) {
                             setMatchedCards(prevCard => {
                                 const updatedMatchedCards = [...prevCard, card]
-                                console.log(updatedMatchedCards)
                                 const uniqueCard = updatedMatchedCards
                                     .filter((a, i) => updatedMatchedCards
                                         .findIndex((s) => a.text === s.text) === i)
@@ -103,7 +103,6 @@ export function Game() {
                     })
                 })
                 resetMoves()
-                console.log("matched cards", matchedCards)
             } else {
                 setTimeout(() => resetMoves(), 1000)
             }
@@ -111,10 +110,28 @@ export function Game() {
 
     }, [firstCard, secondCard]);
 
+    useEffect(() => {
+        shuffleCards()
+    }, [])
+
+
+    useEffect(() => {
+        if (matchedCards.length === 1) {
+            setTimeout(() => {
+                setModalIsOpen(true);
+            }, 1000)
+        }
+    }, [matchedCards])
 
 
     return (
         <div className='Game'>
+            <Modal
+            open={modalIsOpen}
+            onClose={() => setModalIsOpen(false)}
+            pairsNumber={PAIRS_NUMBER}
+            onClick={shuffleCards}
+            />
             <div className='Game__main__extensions'>
                 <button
                     onClick={shuffleCards}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import './Timer.scss'
 
 export function Timer({ timeRunning, seconds, setSeconds, minutes, setMinutes, matchedCards }) {
@@ -13,7 +13,6 @@ export function Timer({ timeRunning, seconds, setSeconds, minutes, setMinutes, m
                 setSeconds(prevTime => prevTime + 1)
             }, 1000)
         }
-
         if (seconds === 60) {
             setSeconds(0)
             setMinutes(prevState => prevState + 1)
@@ -23,7 +22,7 @@ export function Timer({ timeRunning, seconds, setSeconds, minutes, setMinutes, m
             clearInterval(time)
         })
 
-    }, [seconds, minutes, timeRunning])
+    }, [seconds, setSeconds, minutes, setMinutes, matchedCards, timeRunning])
 
     function checkTime(i) {
         if (i < 10) {

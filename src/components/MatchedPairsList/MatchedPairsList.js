@@ -16,11 +16,13 @@ export function MatchedPairsList({matchedCards}) {
     return (
         <div className='MatchedPairsList__container'>
             <table>
-                {matchedCards?.map(card =>
-                    (<tr onClick={() => readText(card.text)}>
-                            <td><img src={card.src}/></td>
+                {matchedCards?.map(card => (
+                    <tbody>
+                        <tr key={card.id} onClick={() => readText(card.text)}>
+                            <td><img src={card.src} alt="Brand logo"/></td>
                             <td>{card.text}</td>
                         </tr>
+                    </tbody>
                     )
                 )}
             </table>
