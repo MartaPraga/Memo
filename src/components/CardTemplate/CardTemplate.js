@@ -1,7 +1,7 @@
 import React from "react";
 import './CardTemplate.scss'
 
-export function CardTemplate({card, handleCard, flipped}) {
+export function CardTemplate({card, handleCard, flipped, columnNumber}) {
 
     const handleClick = () => {
         handleCard(card)
@@ -14,7 +14,6 @@ export function CardTemplate({card, handleCard, flipped}) {
         utterance.lang = 'pl-PL';
         utterance.volume = 5;
         speechSynthesis.speak(utterance);
-        console.log('####', utterance)
     }
 
     return (

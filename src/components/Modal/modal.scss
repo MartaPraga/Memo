@@ -29,6 +29,45 @@
       cursor: pointer;
     }
 
+    & h2 {
+      margin: 5px;
+    }
+
+    & p {
+      margin: 5px;
+    }
+
+    &-input {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      margin: 10px;
+
+      & input {
+        width: 15rem;
+        height: 2rem;
+        font-size: 1.5rem;
+      }
+
+      &__save-button {
+        color: #003e4d;
+        width: 11rem;
+        height: 2rem;
+        font-size: 1.50rem;
+        font-weight: 700;
+        background-color: #ff475a;
+        border-radius: 20px;
+        margin: 0 20px 20px;
+        cursor: pointer;
+
+        &:disabled {
+          cursor: not-allowed;
+        }
+      }
+
+
+    }
+
     &__image {
       width: 250px;
       height: auto;
@@ -42,14 +81,14 @@
       font-weight: 700;
       background-color: #ffb5bd;
       border-radius: 20px;
-      margin: 0 20px 20px;
+      margin: 10px 20px 20px;
       cursor: pointer;
 
       &:hover {
         transition-duration: 0.2s;
         background-color: #ff475a;
-
       }
+
 
       &:active {
         position: relative;

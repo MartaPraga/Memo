@@ -8,22 +8,26 @@ import {Modal} from "../Modal/Modal";
 import './Game.scss';
 
 const carsLogo = [
-    {"src": "/img/CarsLogo/acura-logo.png", text: "acura"},
-    {"src": "/img/CarsLogo/alfaRomeo-logo.png", text: "Alfa Romeo"},
+    {"src": "/img/CarsLogo/acura-logo.png", text: "Acura"},
+    {"src": "/img/CarsLogo/alfaRomeo-logo.jpeg", text: "Alfa Romeo"},
     {"src": "/img/CarsLogo/audi-logo.png", text: 'Audi'},
     {"src": "/img/CarsLogo/bentley-logo.png", text: 'Bentley'},
     {"src": "/img/CarsLogo/bmw-logo.png", text: 'BMW'},
     {"src": "/img/CarsLogo/citroen-logo.png", text: 'Citroen'},
+    {"src": "/img/CarsLogo/dacia-logo.png", text: 'Dacia'},
     {"src": "/img/CarsLogo/dodge-logo.png", text: 'Dodge'},
     {"src": "/img/CarsLogo/ferrari-logo.png", text: 'Ferrari'},
     {"src": "/img/CarsLogo/fiat-logo.png", text: 'Fiat'},
     {"src": "/img/CarsLogo/ford-logo.png", text: 'Ford'},
     {"src": "/img/CarsLogo/honda-logo.png", text: 'Honda'},
     {"src": "/img/CarsLogo/hyundai-logo.png", text: 'Hyundai'},
+    {"src": "/img/CarsLogo/kia-logo.png", text: 'KIA'},
     {"src": "/img/CarsLogo/lamborghini-logo.png", text: 'Lamborghini'},
     {"src": "/img/CarsLogo/landRover-logo.png", text: 'Land Rover'},
+    {"src": "/img/CarsLogo/lexus-logo.png", text: 'Lexus'},
     {"src": "/img/CarsLogo/mercedes-logo.png", text: 'Mercedes'},
     {"src": "/img/CarsLogo/mini-logo.png", text: 'Mini'},
+    {"src": "/img/CarsLogo/mitsubishi-logo.png", text: 'Mitsubishi'},
     {"src": "/img/CarsLogo/nissan-logo.png", text: 'Nissan'},
     {"src": "/img/CarsLogo/opel-logo.png", text: 'Opel'},
     {"src": "/img/CarsLogo/porsche-logo.png", text: 'Porsche'},
@@ -35,10 +39,11 @@ const carsLogo = [
     {"src": "/img/CarsLogo/tesla-logo.png", text: 'Tesla'},
     {"src": "/img/CarsLogo/toyota-logo.png", text: 'Toyota'},
     {"src": "/img/CarsLogo/volkswagen-logo.png", text: 'Volkswagen'},
-    // {"src": "/img/CarsLogo/volvo-logo.png", text: 'volvo'},
+    {"src": "/img/CarsLogo/volvo-logo.png", text: 'Volvo'},
 ];
 
 const PAIRS_NUMBER = 8;
+
 
 export function Game() {
     const [cards, setCards] = useState([]);
@@ -116,7 +121,7 @@ export function Game() {
 
 
     useEffect(() => {
-        if (matchedCards.length === 1) {
+        if (matchedCards.length === PAIRS_NUMBER) {
             setTimeout(() => {
                 setModalIsOpen(true);
             }, 1000)
@@ -131,6 +136,9 @@ export function Game() {
             onClose={() => setModalIsOpen(false)}
             pairsNumber={PAIRS_NUMBER}
             onClick={shuffleCards}
+            minutes={minutes}
+            seconds={seconds}
+            moves={moves}
             />
             <div className='Game__main__extensions'>
                 <button
@@ -146,6 +154,7 @@ export function Game() {
                     minutes={minutes}
                     setMinutes={setMinutes}
                     matchedCards={matchedCards}
+                    pairsNumber={PAIRS_NUMBER}
                 />
                 <MovesCounter
                     moves={moves}

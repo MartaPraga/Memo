@@ -12,7 +12,6 @@ export function MatchedPairsList({matchedCards}) {
         speechSynthesis.speak(utterance)
     }
 
-
     return (
         <div className='MatchedPairsList__container'>
             <table>

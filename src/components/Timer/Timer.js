@@ -1,14 +1,14 @@
 import React, {useEffect} from "react";
 import './Timer.scss'
 
-export function Timer({ timeRunning, seconds, setSeconds, minutes, setMinutes, matchedCards }) {
+export function Timer({ timeRunning, seconds, setSeconds, minutes, setMinutes, matchedCards, pairsNumber }) {
     minutes = checkTime(minutes);
     seconds = checkTime(seconds);
 
     useEffect(() => {
         let time;
 
-        if (timeRunning && matchedCards.length < 8) {
+        if (timeRunning && matchedCards.length < pairsNumber) {
             time = setInterval(() => {
                 setSeconds(prevTime => prevTime + 1)
             }, 1000)
@@ -22,7 +22,7 @@ export function Timer({ timeRunning, seconds, setSeconds, minutes, setMinutes, m
             clearInterval(time)
         })
 
-    }, [seconds, setSeconds, minutes, setMinutes, matchedCards, timeRunning])
+    }, [seconds, setSeconds, minutes, setMinutes, matchedCards, timeRunning, pairsNumber])
 
     function checkTime(i) {
         if (i < 10) {
